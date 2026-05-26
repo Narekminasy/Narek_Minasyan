@@ -5,7 +5,9 @@ import 'dotenv/config';
 
 import migrate from './migrate.js';
 import router from './routes/index.js';
-import errorHandler from './middlewares/errorHandler.js';
+//import errorHandler from './middlewares/errorHandler.js';
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -18,6 +20,6 @@ await migrate();
 app.use(router);
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${process.env.PORT}`);
 });
