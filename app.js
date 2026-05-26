@@ -1,25 +1,26 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import morgan from 'morgan';
-import 'dotenv/config';
+import express from "express";
+import cookieParser from "cookie-parser";
+import morgan from "morgan";
+import "dotenv/config";
+import authRoutes from "../routes/auth.js";
 
-import migrate from './migrate.js';
-import router from './routes/index.js';
-//import errorHandler from './middlewares/errorHandler.js';
-
-const PORT = process.env.PORT || 3000;
+import migrate from "./migrate.js";
+import router from "./routes/index.js";
+import { notFound, errorHandler } from "./middlewares/errorHandler.js";
 
 const app = express();
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
-app.use(cookieParser(process.env.COOKIE_SECRET));   // <-- enables req.signedCookies
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 await migrate();
 
 app.use(router);
+
+app.use(notFound);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${process.env.PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server running`);
 });
