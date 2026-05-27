@@ -6,21 +6,22 @@ import authorization from "../middlewares/authorization.js";
 const router = Router();
 
 router.post(
-    "/auth/register",
+    "/register",
     validation(schema.register, "body"),
 );
+
 router.post(
-    "/auth/login",
+    "/login",
     validation(schema.login, "body"),
 );
 
 router.post(
-    "/auth/logout",
+    "/logout",
     authorization,
 );
 
 router.get(
-    "/auth/me",
+    "/me",
     authorization,
 );
 

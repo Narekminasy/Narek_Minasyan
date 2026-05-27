@@ -2,7 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import "dotenv/config";
-//import authRoutes from "../routes/auth.js";
+import authRoutes from "./routes/auth.js";
 
 import migrate from "./migrate.js";
 import router from "./routes/index.js";
@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 await migrate();
+app.use(authRoutes);
 
 app.use(router);
 
