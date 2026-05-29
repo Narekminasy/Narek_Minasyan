@@ -15,11 +15,13 @@ router.post(
     controller.create,
 );
 
+
 router.get(
     '/',
     authorization,
     controller.getAll,
 );
+
 
 router.get(
     '/same-city',
