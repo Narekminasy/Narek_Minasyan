@@ -13,7 +13,10 @@ const validator = (schema, path = 'body') => (req, res, next) => {
                 _.set(errors, d.path, errorMessage);
             });
 
-            throw new HttpErrors(422, { errors });
+            throw new HttpErrors(422, {
+                message: 'Validation error',
+                errors,
+            });
         }
 
         next();
