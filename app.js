@@ -4,14 +4,17 @@ import "dotenv/config";
 import authRoutes from "./routes/auth.js";
 import cookieParser from 'cookie-parser';
 
+
 import migrate from "./migrate.js";
 import router from "./routes/index.js";
 import error from "./middlewares/errorHandler.js";
+import sessionMiddleware from './config/session.js';
 
 const app = express();
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(sessionMiddleware);
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 

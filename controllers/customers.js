@@ -10,7 +10,7 @@ export default {
             if (!customer) {
                 throw new HttpErrors(500, 'Failed to create customer');
             }
-
+            // console.log('B');
             res.status(200).json({
                 customer: customer,
             });
@@ -26,7 +26,7 @@ export default {
             if (!customer) {
                 throw new HttpErrors(500, 'Failed to fetch customers');
             }
-
+            // console.log('d');
             res.json({
                 customer,
                 count: customer.length,
@@ -46,7 +46,6 @@ export default {
 
             res.json({
                 city,
-                count: city.length,
             });
         } catch (e) {
             next(e);
@@ -58,7 +57,7 @@ export default {
             const deleteCustomer = await Customer.deleteCustomer(req.params.id);
 
             if (!deleteCustomer) {
-                throw new HttpErrors(500, 'Failed to delete customer');
+                throw new HttpErrors(500, 'Failed to delete');
             }
 
             res.json({
