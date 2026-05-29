@@ -17,4 +17,6 @@ connection.connect(function (err,bd) {
     }else console.log(err,bd);
 })
 
+
+
 export default connection.promise();
